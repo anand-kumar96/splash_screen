@@ -13,7 +13,8 @@ While a static splash screen can be effective, an animated splash screen can tak
 1. Create a new Flutter project if you didn't have already running app.
 
 2. For the first time we need to change the native splash screen and the launcher icon for our app. add flutter_native_splash using terminal.
-#### command:
+###
+
 
 ```https
  $ flutter pub add flutter_native_splash 
@@ -67,3 +68,202 @@ $ dart run flutter_native_splash:create
  $ dart run flutter_native_splash:remove 
 ```
 3. Add animated_splash_screen.
+###
+```https 
+$ flutter pub add animated_splash_screen    
+ ```
+4. Add your splash_animation.json to "assets/splash.json"
+
+you can get animations from  [lottiefiles.com](https://lottiefiles.com/?trk=article-ssr-frontend-pulse_little-text-block)
+
+5. Add lottie package to our app so we can run our animation
+command:
+###
+```https 
+$ flutter pub add lottie   
+ ```
+
+6- create a stateless widget called SplashScreen which returns AnimatedSplashScreen() widget that requires splash and nextScreen parameters
+###
+```https
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+      body: AnimatedSplashScreen(
+        backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+        splash: null
+        nextScreen: null
+      ),
+    );
+  }
+}  
+```
+7. Add our animation to the splash parameter using Lottie.asset() to load our animation form assets/splash.json and give repeat parameter false value
+and don't forget to add an assets section in pubspec.yaml and restart app
+###
+```https
+  assets:
+    - assets/  
+```
+
+```https
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+      body: AnimatedSplashScreen(
+        backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+        splash: Center(
+          child: Lottie.asset(
+            'assets/splash.json',
+            repeat: false
+          ),
+        ),
+        nextScreen: null,
+      ),
+    );
+  }
+}
+```
+8. Define the navigation to the HomePage() as nextScreen parameter
+###
+
+```https
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:portfolio/pages/home_page.dart';
+import 'package:lottie/lottie.dart';
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+      body: AnimatedSplashScreen(
+        backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+        splash: Center(
+          child: Lottie.asset(
+            'assets/splash.json',
+            repeat: false
+          ),
+        ),
+        nextScreen: const HomePage(),
+      ),
+    );
+  }
+}
+```
+9. give the animation a splashIconSize and duration
+###
+```https
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:portfolio/pages/home_page.dart';
+import 'package:lottie/lottie.dart';
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+      body: AnimatedSplashScreen(
+        backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+        splash: Center(
+          child: Lottie.asset(
+            'assets/splash.json',
+            repeat: false
+          ),
+        ),
+        nextScreen: const HomePage(),
+        splashIconSize: 250,
+        duration: 1600,
+      ),
+    );
+  }
+}
+```
+10. add some transitions to make our animation more beauty by using
+SplashTransition and page_transition package
+###
+```https
+ $ flutter pub add page_transition      
+```
+```https
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:portfolio/pages/home_page.dart';
+import 'package:portfolio/utils/constants.dart';
+import 'package:lottie/lottie.dart';
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+      body: AnimatedSplashScreen(
+        backgroundColor: const Color.fromRGBO(7, 17, 26, 1),
+        splash: Center(
+          child: Lottie.asset(
+            'assets/splash.json',
+            repeat: false
+          ),
+        ),
+        nextScreen: const HomePage(),
+        splashIconSize: 250,
+        duration: 1600,
+       splashTransition: SplashTransition.fadeTransition,
+       pageTransitionType: PageTransitionType.leftToRight,
+      ),
+    );
+  }
+}
+```
+11- go to MyApp() widget and add SplashScreen() as home for the MaterialApp widget
+###
+
+```https
+import 'package:flutter/material.dart';
+import 'package:portfolio/spash_screen.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Anand Kumar',
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
+      darkTheme: Theme.of(context).copyWith(
+        platform: TargetPlatform.android,
+        scaffoldBackgroundColor: Color.fromRGBO(7, 17, 26, 1),
+        primaryColor: Color.fromRGBO(21, 181, 114, 1),
+        canvasColor: Color.fromRGBO(7, 17, 26, 1),
+      ),
+      home: const SplashScreen(),
+    );
+  }
+}
+```
+12- Run the app and 🎉🎉 Congratulations !!
