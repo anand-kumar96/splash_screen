@@ -58,8 +58,12 @@ flutter_native_splash:
   ios: true     
 ```
 then run this command in terminal
-```https
-to add: $ dart run flutter_native_splash:create   
-to remove : $ dart run flutter_native_splash:remove 
+####  to Add
+```https 
+$ dart run flutter_native_splash:create   
+```
+####  to Remove
+```https 
+ $ dart run flutter_native_splash:remove 
 ```
 3. Add animated_splash_screen.
