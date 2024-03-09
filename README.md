@@ -149,7 +149,7 @@ class SplashScreen extends StatelessWidget {
 ```https
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/pages/home_page.dart';
+import 'package:portfolio/home_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -177,7 +177,7 @@ class SplashScreen extends StatelessWidget {
 ```https
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/pages/home_page.dart';
+import 'package:portfolio/home_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -212,8 +212,7 @@ SplashTransition and page_transition package
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:portfolio/pages/home_page.dart';
-import 'package:portfolio/utils/constants.dart';
+import 'package:portfolio/home_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatelessWidget {
