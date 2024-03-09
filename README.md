@@ -18,7 +18,7 @@ While a static splash screen can be effective, an animated splash screen can tak
 ```https
  $ flutter pub add flutter_native_splash 
 ```
-at pubspec.yaml file add this lines to change the launcher icon which is located in "assets/app_icon/logo.png"
+at pubspec.yaml file add this lines to change the launcher icon which is located in "assets/logo.png" or create flutter_launcher_icons.yaml file and add these code.
 
 ```
 flutter_launcher_icons:
@@ -42,3 +42,24 @@ flutter_launcher_icons:
     generate: true
     image_path: "path/to/logo.png"
 ```
+then run this command in terminal :
+```https
+$ flutter pub run flutter_launcher_icons  
+```
+at the same pubspec.yaml file add this lines to change the native splash screen which is located in "assets/logo.png" or create flutter_native_splash.yaml file and add these code.
+```
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo.png
+  color_dark: "#000000"
+  android_12:
+    image: assets/logo.png
+  android: true
+  ios: true     
+```
+then run this command in terminal
+```https
+to add: $ dart run flutter_native_splash:create   
+to remove : $ dart run flutter_native_splash:remove 
+```
+3. Add animated_splash_screen.
